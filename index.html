@@ -8,7 +8,8 @@
     <title>reveal.js</title>
 
     <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/theme/black.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/theme/night.css">
 
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -21,13 +22,170 @@
         link.href = window.location.search.match(/print-pdf/gi) ?
             'css/print/pdf.css' : 'css/print/paper.css';
         document.getElementsByTagName('head')[0].appendChild(link);
+
     </script>
 </head>
 
 <body>
     <div class="reveal">
         <div class="slides">
+            <section>
+                <h2>CSSとうまく付き合う</h2>
+                <p><i class="fa fa-twitter"></i> @_araya_</p>
+                <p>at フラー エンジニアご飯会</p>
+            </section>
+            <section class="align-left">
+                <h3>
+                    今日話すこと
+                </h3>
+                <ul>
+                    <li>最近やってたことの共有</li>
+                    <li>CSSをやっていく上で最低限知っておくべきなこと </li>
+                    <li>知っておくと便利なCSS Tips</li>
+                </ul>
+                <h3>
+                    今日話さないこと
+                </h3>
+                <li>HTML, JS, Houdiniなどについて</li>
+                <li>古のブラウザ(IE10など)の対応について</li>
+                <li>マーケティング系のツール結構しんどいって話</li>
+            </section>
+            <section>
+                <section>
+                    <h2>CSSのおさらい</h2>
+                </section>
+                <section>
+                    <h3><span style="text-decoration: underline #FE5C50;">Cascading</span>                    Style Sheet</h3>
+                </section>
+                <section>
+                    <img src="./img/cascades.png" alt="">
+                </section>
+                <section>
+                    <p class="quote">
+                        Declarations not set in the highest priority source are passed on to a source of
+                        lower priority, such as the user agent style. This process
+                        is called <b>cascading</b>.
+                    </p>
+                    <p class="align-right">
+                        - Wikipedia
+                    </p>
+                </section>
+                <section>
+                    <img src="http://livedoor.4.blogimg.jp/jigokuno_misawa/imgs/b/0/b05917ce.gif" alt="">
+                    <h3 class="fragment">完</h3>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h2>最近生まれた子どもたち</h2></section>
+                <section>
+                    <div class="img-with-caption">
+                        <img data-src="./img/biz-report.appa.pe.png" alt="">
+                        <a class="img-with-caption-caption" href="https://biz-report.appa.pe">https://biz-report.appa.pe</a>
+                    </div>
 
+                </section>
+                <section>
+                    <div class="img-with-caption"><img data-src="./img/appa.pe-en.png" alt="">
+                        <a class="img-with-caption-caption" href="https://appa.pe/en/">https://appa.pe/en/</a>
+                    </div>
+                </section>
+                <section>
+                    <div class="img-with-caption"><img data-src="./img/appa.pe-ja.png" alt="">
+                        <a class="img-with-caption-caption" href="https://appa.pe/ja/">https://appa.pe/ja/</a>
+                    </div>
+
+                </section>
+                <section>
+                    <div class="img-with-caption"><img data-src="./img/joren.io-ja.png" alt="">
+                        <a class="img-with-caption-caption" href="https://joren.io/ja/?lg=ja">https://joren.io/ja/?lg=ja</a>
+                    </div>
+
+                </section>
+            </section>
+            </section>
+            <section>
+                <h3>絶対使うCSSテクニックn選</h3>
+            </section>
+            <section>
+                <section>
+                    <div class="centering-outer">
+                        <div class="centering-inner">
+                            <h3>1. 上下中央揃え</h3>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <pre class="col-sm-6"><code>
+.centering-outer {
+  height: 480px;
+  background: #555555;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.centering-inner {
+  height: 80%;
+  width: 80%;
+  background: #9A9A9A;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+                    </code></pre>
+                        <div class="col-sm-5 col-sm-offset-1">
+                            <div class="centering-outer">
+                                <div class="centering-inner">
+                                    <p>Hello World!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <div class="flex-grid-outer">
+                        <div class="flex-grid-left">
+                            2.画面幅が小さくなると
+                        </div>
+                        <div class="flex-grid-right">
+                            こっちが下に来るやつ
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <pre class="col-sm-7"><code>
+.grid-outer {
+  width: 100%;
+} 
+.grid-left, .grid-right {
+  width: 50%;
+}
+@media screen and (max-width: 1023px) {
+  .grid-left, .grid-right {
+    width: 100%;
+  }
+}
+
+                        </code></pre>
+                        <div class="col-sm-5 col-sm-offset-1">
+                            <div class="grid-outer">
+                                <div class="grid-left">
+                                    Hello
+                                </div>
+                                <div class="grid-right">
+                                    World
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
         </div>
     </div>
 
@@ -61,7 +219,9 @@
                 }
             }]
         });
+
     </script>
 </body>
 
 </html>
+
