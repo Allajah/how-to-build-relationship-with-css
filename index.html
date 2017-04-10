@@ -30,9 +30,14 @@
     <div class="reveal">
         <div class="slides">
             <section>
-                <h2>CSSとうまく付き合う</h2>
+                <h2>CSSの術をつかいこなす</h2>
+                <h5>(下忍編)</h5>
                 <p><i class="fa fa-twitter"></i> @_araya_</p>
                 <p>at フラー エンジニアご飯会</p>
+                <p>Apr. 10 2017</p>
+            </section>
+            <section>
+                <img src="../img/profile.png" alt="">
             </section>
             <section class="align-left">
                 <h3>
@@ -49,6 +54,13 @@
                 <li>HTML, JS, Houdiniなどについて</li>
                 <li>古のブラウザ(IE10など)の対応について</li>
                 <li>マーケティング系のツール結構しんどいって話</li>
+            </section>
+            <section>
+            <h3>前提として</h3>
+            <ul>
+                <li>HTML,CSSってなに？って人はいないですよね</li>
+                <li>CSS一行くらいみんな書いたことありますよね</li>
+            </ul>
             </section>
             <section>
                 <section>
@@ -108,6 +120,42 @@
                 <h3>絶対使うCSSテクニックn選</h3>
             </section>
             <section>
+                <h3>
+                    Can I Use ?
+                </h3>
+                <a href="http://caniuse.com">caniuse.com</a>
+            </section>
+            <section>
+                <section>
+                    <h3>Reset CSS</h3>
+                </section>
+                <section>
+                    <ul>
+                        <li>ブラウザのデフォルトのスタイルをリセットしてくれるものの総称</li>
+                        <li>特別なスタイル使ってないのに、なぜかChromeとSafariで表示が違う みたいな事故を避けられることがある</li>
+                        <li>YUI 3、Eric Mayer、HTML5 Doctor、normalize.css、sanitize.css
+                            いろいろある
+                        </li>
+                        <li>HTML5に対応しているものを使うのがいい</li>
+                        <li>そのまま使うものではなく、自分で足りないものを追加する使い方がいい</li>
+                        <li>無駄なスタイル指定が増えるので、使わないのも手</li>
+                        <li>主観的にはnormalize.cssがおすすめ</li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <section>
+
+                    <h3>Flexible Box Layout Module</h3>
+                    <a href="https://www.w3.org/TR/css-flexbox/">https://www.w3.org/TR/css-flexbox/</a>
+                </section>
+                <section>
+                    <h4>手軽に覚えたい人におすすめ</h4>
+                    <a href="http://flexboxfroggy.com/">http://flexboxfroggy.com/</a>
+                    <img src="../img/flexbox-froggy.png" alt="">
+                </section>
+            </section>
+            <section>
                 <section>
                     <div class="centering-outer">
                         <div class="centering-inner">
@@ -162,18 +210,28 @@
                         <pre class="col-sm-7"><code>
 .grid-outer {
   width: 100%;
-} 
-.grid-left, .grid-right {
-  width: 50%;
 }
+
+.grid-left, .grid-right {
+  display: inline-block;
+  background: #555555;
+}
+
+@media screen and (min-width: 1024px) {
+  .grid-left, .grid-right {
+    display: inline-block;
+  }
+}
+
 @media screen and (max-width: 1023px) {
   .grid-left, .grid-right {
+    display: block;
     width: 100%;
   }
 }
 
                         </code></pre>
-                        <div class="col-sm-5 col-sm-offset-1">
+                        <div class="col-sm-4">
                             <div class="grid-outer">
                                 <div class="grid-left">
                                     Hello
@@ -185,6 +243,411 @@
                         </div>
                     </div>
                 </section>
+                <section>
+                    <div class="flex-grid-outer">
+                        <div class="flex-grid-left">
+                            Hello
+                        </div>
+                        <div class="flex-grid-right">
+                            World
+                        </div>
+                    </div>
+                    <div class="flex-grid-outer">
+                        <div class="flex-grid-left">
+                            Hello
+                        </div>
+                        <div class="flex-grid-right">
+                            World
+                        </div>
+                    </div>
+                    <div class="flex-grid-outer">
+                        <div class="flex-grid-left">
+                            Hello
+                        </div>
+                        <div class="flex-grid-right">
+                            World
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <pre class="col-sm-7"><code>
+ .flex-grid-outer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.flex-grid-left, .flex-grid-right {
+  display: flex;
+  justify-content: center;
+}
+.flex-grid-left {
+  background: #555555;
+}
+.flex-grid-right {
+  background: #9A9A9A;
+}
+
+@media screen and (min-width: 1024px) {
+ .flex-grid-left, .flex-grid-right {
+  width: 50%;
+ } 
+.flex-grid-outer:nth-child(2n) {
+    flex-direction: row-reverse;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .flex-grid-outer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}                       
+                        </code></pre>
+                        <div class="col-sm-5">
+                            <div class="flex-grid-outer">
+                                <div class="flex-grid-left">
+                                    Hello
+                                </div>
+                                <div class="flex-grid-right">
+                                    World
+                                </div>
+                            </div>
+                            <div class="flex-grid-outer">
+                                <div class="flex-grid-left">
+                                    Hello
+                                </div>
+                                <div class="flex-grid-right">
+                                    World
+                                </div>
+                            </div>
+                            <div class="flex-grid-outer">
+                                <div class="flex-grid-left">
+                                    Hello
+                                </div>
+                                <div class="flex-grid-right">
+                                    World
+                                </div>
+                            </div>
+
+
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h3>Grid System</h3>
+                </section>
+                <section>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="grid-box"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5 col-xs-12">
+                            <div class="grid-box"></div>
+                        </div>
+                        <div class="col-sm-7 col-xs-12">
+                            <div class="grid-box"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2 col-xs-6">
+                            <div class="grid-box"></div>
+                        </div>
+                        <div class="col-sm-10 col-xs-6">
+                            <div class="grid-box"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-1 col-xs-6">
+                            <div class="grid-box"></div>
+                        </div>
+                        <div class="col-sm-8 col-xs-6">
+                            <div class="grid-box"></div>
+                        </div>
+                        <div class="col-sm-3 col-xs-12">
+                            <div class="grid-box"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5 col-xs-12">
+                            <div class="grid-box"></div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="grid-box"></div>
+                        </div>
+                        <div class="col-sm-1 col-xs-12">
+                            <div class="grid-box"></div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <pre class="col-xs-6"><code class="flexboxgrid-html">
+ <div class="row">
+     <div class="col-xs-12">
+         <div class="grid-box"></div>
+     </div>
+ </div>
+ <div class="row">
+     <div class="col-sm-5 col-xs-12">
+         <div class="grid-box"></div>
+     </div>
+     <div class="col-sm-7 col-xs-12">
+         <div class="grid-box"></div>
+     </div>
+ </div>
+ <div class="row">
+     <div class="col-sm-2 col-xs-6">
+         <div class="grid-box"></div>
+     </div>
+     <div class="col-sm-10 col-xs-6">
+         <div class="grid-box"></div>
+     </div>
+ </div>
+     
+                        </code></pre>
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="grid-box"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-5 col-xs-12">
+                                    <div class="grid-box"></div>
+                                </div>
+                                <div class="col-sm-7 col-xs-12">
+                                    <div class="grid-box"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-2 col-xs-6">
+                                    <div class="grid-box"></div>
+                                </div>
+                                <div class="col-sm-10 col-xs-6">
+                                    <div class="grid-box"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <ul>
+                        <li>デザイナーがグリッドを基に作ってくれてるとめちゃくちゃやりやすい</li>
+                        <li><a href="http://getbootstrap.com/">Bootstrap</a>, <a href="http://bulma.io/">Bulma</a>とか大きめのCSSフレームワークにはだいたい内蔵されてる</li>
+                        <li><a href="http://flexboxgrid.com/">flexboxgrid</a>がコンパクトで便利</li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <h3>いつか役立つCSS Tips</h3>
+            </section>
+            <section>
+                <section>
+                    <h3>ジグザグ線</h3>
+                    <div class="jagged-line"></div>
+                </section>
+                <section>
+                    <div class="row">
+                        <pre class="col-xs-12"><code>
+.jagged-line {
+  padding: 1em;
+  background: linear-gradient(45deg, #555555 10px, transparent 0) 0 10px,
+  linear-gradient(-45deg, #555555 10px, transparent 0) 0 10px;
+  background-position: left bottom;
+  background-repeat: repeat-x;
+  background-size: 20px 20px;
+}
+
+                    </code></pre>
+                        <div class="col-xs-12">
+                            <div class="jagged-line"></div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <pre class="col-xs-12"><code>
+.jagged-line-exp-1 {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient( 0deg, blue, green 40%, red );
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 200px 200px;
+}
+                        </code></pre>
+                        <div class="col-xs-12 jagged-line-exp-wrapper">
+                            <div class="jagged-line-exp-1">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <pre class="col-xs-12"><code>
+background: linear-gradient( 0deg, blue 100px, transparent 0);
+                        </code></pre>
+                        <div class="col-xs-12 jagged-line-exp-wrapper">
+                            <div class="jagged-line-exp-2">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <pre class="col-xs-12"><code>
+background: linear-gradient( 45deg, blue 100px, transparent 0);
+                        </code></pre>
+                        <div class="col-xs-12 jagged-line-exp-wrapper">
+                            <div class="jagged-line-exp-3">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <pre class="col-xs-12"><code>
+background: linear-gradient( 45deg, blue 71px, transparent 0),
+linear-gradient(-45deg, red 71px, transparent 0);
+                        </code></pre>
+                        <div class="col-xs-12 jagged-line-exp-wrapper">
+                            <div class="jagged-line-exp-4">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <pre class="col-xs-12"><code>
+width: 100%;
+height: 200px;
+background: linear-gradient( 45deg, blue 71px, transparent 0),
+linear-gradient(-45deg, red 71px, transparent 0);
+background-position: center;
+background-repeat: repeat-x;
+background-size: 200px 200px;
+                        </code></pre>
+                        <div class="col-xs-12 jagged-line-exp-wrapper">
+                            <div class="jagged-line-exp-5">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <div class="slanted-bg-wrapper">
+                        <div class="slanted-bg">
+                            <div class="slanted-bg-content">
+                                <h3>斜めラインの背景</h3>
+                            </div>
+                        </div>
+                        <div class="other-content">
+                        </div>
+
+                    </div>
+                </section>
+                <section>
+                    <h3> 最初の試み: linear-gradient </h3>
+                    <div class="fragment">
+                        線がガタガタしてだめだった
+                    </div>
+                </section>
+                <section>
+                    <pre><code>
+                    
+                   
+.slanted-bg {
+ position: relative;
+ background: orange;
+ z-index: -2;
+}
+.slanted-bg:after {
+   content: ' ';
+   left: 0;
+   bottom: -20%;
+   position: absolute;
+   z-index: -1;
+   width: 100%;
+   height: 70%;
+   background: #555555;
+   transform: skewY(-10deg); 
+}
+                </code></pre>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h3>calc()</h3>
+                </section>
+                <section>
+                    <ul>
+                        <li>CSSで計算を可能にする唯一の方法</li>
+                        <li><code>height: calc(100% - 50px);</code>のように指定可能</li>
+                        <li>プリプロセッサの関数とかではないので、ブラウザでそのまま動く</li>
+                        <li>joren.io/ja/のアイキャッチでかなり使ってる</li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h3>正規表現</h3>
+                </section>
+                <section>
+                    <ul>
+                        <li>- *, ^, $だけ使える</li>
+                    </ul>
+                    <pre><code>
+*[class^='col-']
+*[class$='-eyecatch-img']
+* {
+    box-sizing: border-box;
+}
+                </code></pre>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h2>おすすめ書籍</h2>
+                </section>
+                <section>
+                    <h4>CSSシークレット</h4>
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/51G0A4ZKDaL._SX388_BO1,204,203,200_.jpg"
+                        alt="">
+                </section>
+                <section>
+                    <ul>
+                        <li>基礎的なことからかなり応用的なことまで、実践的なテクニックがそろってる</li>
+                        <li>DRYとわかりやすさをかなり重視しているので、CSSが確実にきれいになる</li>
+                        <li>CSSで組版されてる</li>
+                        <li>画像に猫が多い</li>
+                    </ul>
+                </section>
+                <section>
+                    <h4>日本語も英語もあるよ！</h4>
+                    <img src="../img/css-secret-books.png" alt="">
+                </section>
+            </section>
+            <section>
+                <h3>まとめ</h3>
+                <ul>
+                    <li>Cascadeはたしかにやっかいなこともある(ライブラリ使ってると特に)</li>
+                    <li>CSSを知ること -> CSSが綺麗になる、JSでやってたことがCSSでできることに気づく</li>
+                    <li>日々進化してるので楽しい</li>
+                </ul>
+            </section>
+            <section>
+                <h3>感想</h3>
+                <ul>
+                    <li> 今回はじめてreveal.js使ってみたけどめちゃくちゃ使いづらい。</li>
+                    <li><code>div{ padding:0; }</code>とかやめてほしい</li>
+                    <li class="fragment">しかもgruntて...</li>
+                    <li class="fragment">forkして自分で作りたい</li>
+                </ul>
             </section>
         </div>
     </div>

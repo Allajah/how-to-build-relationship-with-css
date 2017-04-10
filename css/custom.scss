@@ -1,5 +1,6 @@
 @import "../lib/font-awesome-4.7.0/scss/font-awesome.scss";
 @import "../node_modules/flexboxgrid/css/flexboxgrid.css";
+@import "../node_modules/flexboxgrid/css/index.css";
 .align-left {
   text-align: left;
   padding-left: 1em !important;
@@ -79,29 +80,148 @@ h1, h2, h3, h4, h5 {
 
 .grid-left, .grid-right {
   display: inline-block;
+  background: #555555;
+}
+
+@media screen and (min-width: 1024px) {
+  .grid-left, .grid-right {
+    display: inline-block;
+  }
 }
 
 @media screen and (max-width: 1023px) {
   .grid-left, .grid-right {
     display: block;
     width: 100%;
-    }
+  }
 }
 
 .flex-grid-outer {
   display: flex;
   width: 100%;
+  justify-content: center;
 }
-.flex-grid-left, {
-  width: 50%;
+.flex-grid-left, .flex-grid-right {
+  display: flex;
+  justify-content: center;
+}
+.flex-grid-left {
+  background: #555555;
 }
 .flex-grid-right {
-  width: 50%;
+  background: #9A9A9A;
 }
+
+@media screen and (min-width: 1024px) {
+ .flex-grid-left, .flex-grid-right {
+  width: 50%;
+ } 
+.flex-grid-outer:nth-child(2n) {
+    flex-direction: row-reverse;
+  }
+}
+
 @media screen and (max-width: 1023px) {
   .flex-grid-outer {
     display: flex;
     flex-direction: column;
     width: 100%;
+  }
+}
+
+.grid-box {
+  height: 1em;
+  background: #C790E8;
+  margin-bottom: 0.5em;
+}
+
+.flexboxgrid-html {
+  font-size: 12px !important;
+}
+.jagged-line {
+  padding: 1em;
+  background: linear-gradient(45deg, #555555 10px, transparent 0) 0 10px,
+  linear-gradient(-45deg, #555555 10px, transparent 0) 0 10px;
+  background-position: left;
+  background-repeat: repeat-x;
+  background-size: 20px 20px;
+}
+.jagged-line-exp-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.jagged-line-exp-1 {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient( 0deg, blue, green 40%, red );
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 200px 200px;
+}
+.jagged-line-exp-2 {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient( 0deg, blue 100px, transparent 0);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 200px 200px;
+}
+.jagged-line-exp-3 {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient( 45deg, blue 100px, transparent 0);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 200px 200px;
+}
+.jagged-line-exp-4 {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient( 45deg, blue 71px, transparent 0),
+  linear-gradient(-45deg, red 71px, transparent 0);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 200px 200px;
+}
+.jagged-line-exp-5 {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient( 45deg, blue 71px, transparent 0),
+  linear-gradient(-45deg, red 71px, transparent 0);
+  background-position: center;
+  background-repeat: repeat-x;
+  background-size: 200px 200px;
+}
+.slanted-bg-wrapper {
+    width: 100%;
+    height: 600px;
+    .other-content {
+      background-color: #111;
+      z-index: 0;
+      height: 100%;
+    }
+}
+.slanted-bg {
+  height: 80% !important;
+  width: 100% !important;
+  position: relative;
+  background: orange;
+  z-index: -2;
+  &:after {
+    content: ' ';
+    left: 0;
+    bottom: -20%;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 70%;
+    background: #555555;
+    transform: skewY(-10deg);
+  }
+  &-content {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
